@@ -5,15 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1179ea9-f689-4606-88e9-c9955618c54f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/handlers/responses.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/handlers/message.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/dao/impl/message.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/dao/message.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/impl/message.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/message.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handlers/person.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/person.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/dao/impl/person.go" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/dao/impl/person.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/dao/person.go" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/dao/person.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/person.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/person.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/impl/person.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/impl/person.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/person.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/person.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/message.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +67,8 @@
       <option name="presentableId" value="Default" />
       <updated>1664621130020</updated>
       <workItem from="1664621131322" duration="17300000" />
-      <workItem from="1664699753309" duration="13928000" />
+      <workItem from="1664699753309" duration="14363000" />
+      <workItem from="1664721837667" duration="10656000" />
     </task>
     <servers />
   </component>

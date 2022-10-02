@@ -61,17 +61,21 @@ func main() {
 	}
 
 	// Data Access Layer
+	messageDao := impl.NewMessageDao(&session)
 	personDao := impl.NewPersonDao(&session)
 
 	// Service Layer
+	messageService := impl2.NewMessageService(messageDao)
 	personService := impl2.NewPersonService(personDao)
 
 	// Presentation Layer
+	messageServiceHandler := handlers.NewMessageServiceHandler(messageService)
 	personServiceHandler := handlers.NewPersonServiceHandler(personService)
 
 	// ROUTES
 	r := mux.NewRouter().StrictSlash(true)
 	apiRouter := r.PathPrefix("/api").Subrouter()
+	apiRouter.HandleFunc("/messages", messageServiceHandler.SendMessage()).Methods(http.MethodPost)
 	apiRouter.HandleFunc("/people", personServiceHandler.AddPerson()).Methods(http.MethodPost)
 	apiRouter.HandleFunc("/people/{personId}/trust_connections", personServiceHandler.CreateOrUpdateTrustConnections()).Methods(http.MethodPost)
 
