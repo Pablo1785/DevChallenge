@@ -41,17 +41,14 @@ func (pd *personDao) Create(ctx context.Context, person *model.Person) (*model.P
 	}, nil
 }
 
-func (pd *personDao) CreateOrUpdateTrustConnections(ctx context.Context, personId string, trustConnections []model.TrustConnection) error {
-	result, err := (*pd.DbSession).WriteTransaction(func(transaction neo4j.Transaction) (any, error) {
+func (pd *personDao) CreateOrUpdateTrustConnections(ctx context.Context, personId string, trustConnections model.TrustConnections) error {
+	_, err := (*pd.DbSession).WriteTransaction(func(transaction neo4j.Transaction) (any, error) {
 		result, err := transaction.Run(
-			`UNWIND
-						$trustConnections as trustConnections
-					MATCH
-						(p:Person {id:$pId}),
-						(o:Person {id:trustConnections.id})
-					CREATE (p)-[rel:TRUSTS {trustConnections.trust_level}]->(o)
-					RETURN p, rel, o`,
-			map[string]any{"trustConnections": [{id}]})
+			`UNWIND keys($trustConnections) AS trustName
+					OPTIONAL MATCH (p:Person {id:$personId}), (o:Person {id:trustName})
+					MERGE (p)-[rel:TRUSTS]->(o)
+						SET rel.trust_level = $trustConnections[trustName]`,
+			map[string]any{"personId": personId, "trustConnections": trustConnections})
 		if err != nil {
 			return nil, err
 		}
@@ -62,18 +59,7 @@ func (pd *personDao) CreateOrUpdateTrustConnections(ctx context.Context, personI
 
 		return nil, result.Err()
 	})
-	if err != nil {
-		return nil, err
-	}
-	props, isKey := result.(*neo4j.Record).Get("properties")
-	if !isKey {
-		return nil, errors.New("somehow created a record with no properties")
-	}
-	return &model.Person{
-		Id:               props.(map[string]any)["id"].(string),
-		Topics:           props.(map[string]any)["topics"].([]string),
-		TrustConnections: nil,
-	}, nil
+	return err
 }
 
 func NewPersonDao(dbSession *neo4j.Session) dao.PersonDao {

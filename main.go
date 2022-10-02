@@ -73,6 +73,7 @@ func main() {
 	r := mux.NewRouter().StrictSlash(true)
 	apiRouter := r.PathPrefix("/api").Subrouter()
 	apiRouter.HandleFunc("/people", personServiceHandler.AddPerson()).Methods(http.MethodPost)
+	apiRouter.HandleFunc("/people/{personId}/trust_connections", personServiceHandler.CreateOrUpdateTrustConnections()).Methods(http.MethodPost)
 
 	// MIDDLEWARE
 	r.Use(middlewares.CommonResponseHeadersFunc)

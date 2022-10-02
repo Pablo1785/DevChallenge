@@ -15,9 +15,8 @@ func (ps personService) Add(ctx context.Context, person *model.Person) (*model.P
 	return ps.personDao.Create(ctx, person)
 }
 
-func (ps personService) CreateOrUpdateTrustConnections(ctx context.Context, personId string, trustConnections []model.TrustConnection) error {
-	//TODO implement me
-	panic("implement me")
+func (ps personService) CreateOrUpdateTrustConnections(ctx context.Context, personId string, trustConnections model.TrustConnections) error {
+	return ps.personDao.CreateOrUpdateTrustConnections(ctx, personId, trustConnections)
 }
 
 func NewPersonService(personDao dao.PersonDao) service.PersonService {
